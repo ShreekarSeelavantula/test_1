@@ -1,7 +1,7 @@
 #include <vector>
 #include <cmath>
 
-using namespace std;//d
+using namespace std;//dssdf
 
 vector<int> sortedSquares(vector<int>& nums) {
     int left = 0, right = nums.size() - 1, pos = nums.size() - 1;
