@@ -20,7 +20,7 @@ public class Solution {
                 result[index--] = rightSquare;
                 right--;
             }
-        }
+        }//sfs
 
         return result;
     }//3sds
