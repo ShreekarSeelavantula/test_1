@@ -17,7 +17,7 @@ public class Solution {
                 result[index--] = leftSquare;
                 left++;
             } else {
-                result[index--] = rightSquare;
+                result[index--] = rightSquare;//dfsdf
                 right--;
             }
         }//sfs
