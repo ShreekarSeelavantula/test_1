@@ -1,4 +1,4 @@
-package solutions; // Added package declaration to avoid import issues
+package solutions; // Added package declaration to avoid import issu
 
 import java.util.Arrays;
 
