@@ -50,53 +50,54 @@ jobs:
       - name: Stop if multiple solution files changed
         if: env.SOLUTION_COUNT != '1'
         run: |
-          echo "Multiple or no solution files changed. Skipping execution."
+          echo "❌ Skipping execution because $SOLUTION_COUNT solution files were changed. Only one is allowed."
           exit 0
-
-      # Install dependencies only if needed and one file changed
 
       - name: Install C Dependencies
         if: env.RUN_C == '1' && env.SOLUTION_COUNT == '1'
         run: |
+          echo "🔧 Installing C dependencies..."
           sudo apt-get update
           sudo apt-get install -y gcc
 
       - name: Install C++ Dependencies
         if: env.RUN_CPP == '1' && env.SOLUTION_COUNT == '1'
         run: |
+          echo "🔧 Installing C++ dependencies..."
           sudo apt-get update
           sudo apt-get install -y g++
 
       - name: Install Java Dependencies
         if: env.RUN_JAVA == '1' && env.SOLUTION_COUNT == '1'
         run: |
+          echo "🔧 Installing Java dependencies..."
           sudo apt-get update
           sudo apt-get install -y default-jdk
 
       - name: Install Python Dependencies
         if: env.RUN_PYTHON == '1' && env.SOLUTION_COUNT == '1'
         run: |
+          echo "🔧 Installing Python dependencies..."
           python3 -m pip install --upgrade pip pytest
 
-      # Run tests per language
       - name: Compile and Run C Tests
         if: env.RUN_C == '1' && env.SOLUTION_COUNT == '1'
         run: |
-          echo "Running C Test Cases..."
+          echo "🚀 Running C Test Cases..."
           gcc -o tests/test tests/test.c solutions/solution.c
           ./tests/test
 
       - name: Compile and Run C++ Tests
         if: env.RUN_CPP == '1' && env.SOLUTION_COUNT == '1'
         run: |
-          echo "Running C++ Test Cases..."
+          echo "🚀 Running C++ Test Cases..."
           g++ -o tests/test tests/test.cpp solutions/solution.cpp
           ./tests/test
 
       - name: Run Python Tests
         if: env.RUN_PYTHON == '1' && env.SOLUTION_COUNT == '1'
         run: |
-          echo "Running Python Test Cases..."
+          echo "🚀 Running Python Test Cases..."
           export PYTHONUNBUFFERED=1
           export PYTHONPATH=$PWD
           python3 tests/test.py | tee test_results.log
@@ -104,11 +105,11 @@ jobs:
       - name: Compile and Run Java Tests
         if: env.RUN_JAVA == '1' && env.SOLUTION_COUNT == '1'
         run: |
-          echo "Running Java Test Cases..."
+          echo "🚀 Running Java Test Cases..."
           javac -d . solutions/Solution.java tests/Test.java
           java tests.Test
 
-      - name: Upload Test Results
+      - name: Upload Test Results (Python only)
         if: env.SOLUTION_COUNT == '1' && env.RUN_PYTHON == '1'
         uses: actions/upload-artifact@v4
         with:
