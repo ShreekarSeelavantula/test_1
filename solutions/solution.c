@@ -1,27 +1,22 @@
-#include <stdio.h>
-#include <stdlib.h>
+package solutions;
 
-// Define the structure for the node
-struct StudentNode {
-    int rollNumber;
-    struct StudentNode* next;
-};
+public class Solution {
 
-// Function to add students to the list and return the head of the list
+    // Define the class for the Node in the linked list
+    public static class StudentNode {
+        int rollNumber;
+        StudentNode next;
 
-
-
-
-    struct StudentNode* runRollCallOperations(const int* rollNumbers, int count) {
-
-
-     return NULL;
-
-
-        
+        // Constructor to initialize the roll number and next node
+        public StudentNode(int rollNumber) {
+            this.rollNumber = rollNumber;
+            this.next = null;
+        }
     }
 
-
-
-
-    
+    // Function to add students to the list and return the head of the list
+    public static StudentNode runRollCallOperations(int[] rollNumbers) {
+        // Logic to be implemented later
+        return null; // Default return value
+    }
+}
