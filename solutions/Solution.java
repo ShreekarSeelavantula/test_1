@@ -1,20 +1,21 @@
 package solutions;
 
-// Public class for the Node in the linked list
-public class StudentNode {
-    public int rollNumber;
-    public StudentNode next;
-
-    // Constructor to initialize the roll number and next node
-    public StudentNode(int rollNumber) {
-        this.rollNumber = rollNumber;
-        this.next = null;
-    }
-}
-
+// Define the class for the Node in the linked list
 public class Solution {
 
-    // Public method to perform roll call operations and return the head of the linked list
+    // Class for the Node in the linked list
+    public static class StudentNode {
+        public int rollNumber;
+        public StudentNode next;
+
+        // Constructor to initialize the roll number and next node
+        public StudentNode(int rollNumber) {
+            this.rollNumber = rollNumber;
+            this.next = null;
+        }
+    }
+
+    // Method to perform roll call operations and return the head of the linked list
     public static StudentNode runRollCallOperations(int[] rollNumbers) {
         StudentNode head = null;
 
@@ -35,7 +36,7 @@ public class Solution {
         return head;
     }
 
-    // Public method to print the entire linked list
+    // Method to print the entire linked list
     public static void printList(StudentNode head) {
         StudentNode current = head;
         while (current != null) {
