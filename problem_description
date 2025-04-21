@@ -1,0 +1,46 @@
+ Problem: Roll Call Linked List
+🔹 Problem Statement:
+You are given an array of student roll numbers. Your task is to perform a roll call by creating a singly linked list from the given roll numbers, maintaining the order in which they appear.
+
+Each node in the linked list should contain:
+
+The student’s roll number (int rollNumber)
+
+A pointer to the next node
+
+🔹 Function Signature:
+
+struct StudentNode* runRollCallOperations(const int* rollNumbers, int count);
+🔹 Input:
+rollNumbers: An array of integers representing student roll numbers.
+
+count: An integer representing the number of students (i.e., length of the array).
+
+🔹 Output:
+Return the head pointer of the linked list that contains the roll numbers in the same order as they appear in the input array.
+
+If the input array is empty (count == 0), return NULL.
+
+🔹 Constraints:
+0 <= count <= 1000
+
+Roll numbers are unique integers in the range 1 <= rollNumber <= 10000.
+
+🔹 Example:
+Example 1:
+
+Input:  [101, 105, 110], count = 3
+Output: Linked list: 101 -> 105 -> 110 -> NULL
+Example 2:
+
+Input:  [], count = 0
+Output: NULL
+
+
+✅ Note:
+You do not need to sort or modify the input array.
+
+The linked list should be created dynamically using malloc.
+
+Each test will compare your returned linked list with an expected linked list for structure and values.
+
