@@ -8,7 +8,7 @@ def linked_list_to_list(head):
     while current:
         result.append(current.roll_number)
         current = current.next
-    return result
+    return result#
 
 # Test cases for the run_roll_call_operations function
 def test_case_1():
