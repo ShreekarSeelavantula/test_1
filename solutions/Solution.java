@@ -1,48 +1,26 @@
 package solutions;
 
-// Define the class for the Node in the linked list
 public class Solution {
 
-    // Class for the Node in the linked list
+    // Define the StudentNode class inside the Solution class
     public static class StudentNode {
-        public int rollNumber;
-        public StudentNode next;
+        int rollNumber;
+        StudentNode next;
 
-        // Constructor to initialize the roll number and next node
         public StudentNode(int rollNumber) {
             this.rollNumber = rollNumber;
             this.next = null;
         }
     }
 
-    // Method to perform roll call operations and return the head of the linked list
+    // Function to add students to the list and return the head of the list
     public static StudentNode runRollCallOperations(int[] rollNumbers) {
-        StudentNode head = null;
-
-        // Iterate through the roll numbers and create linked list nodes
-        for (int rollNumber : rollNumbers) {
-            StudentNode newNode = new StudentNode(rollNumber);
-            if (head == null) {
-                head = newNode;
-            } else {
-                StudentNode current = head;
-                // Traverse to the end of the list
-                while (current.next != null) {
-                    current = current.next;
-                }
-                current.next = newNode;
-            }
-        }
-        return head;
+        // Placeholder return for now, logic needs to be added by the coder
+        return null;
     }
 
-    // Method to print the entire linked list
+    // Function to print the list
     public static void printList(StudentNode head) {
-        StudentNode current = head;
-        while (current != null) {
-            System.out.print(current.rollNumber + " ");
-            current = current.next;
-        }
-        System.out.println();
+        // Placeholder logic for printing the list, coder can add the correct logic here
     }
 }
