@@ -6,6 +6,9 @@ class StudentNode:
 
 # Function to add students to the linked list and return the head of the list
 def run_roll_call_operations(roll_numbers):
-    return
-    
-#####
+    head = None
+    for roll_number in reversed(roll_numbers):  # Reverse to maintain the correct order
+        new_node = StudentNode(roll_number)
+        new_node.next = head
+        head = new_node
+    return head
