@@ -1,9 +1,9 @@
 package solutions;
 
-// Define the class for the Node in the linked list (now public)
+// Public class for the Node in the linked list
 public class StudentNode {
-    int rollNumber;
-    StudentNode next;
+    public int rollNumber;
+    public StudentNode next;
 
     // Constructor to initialize the roll number and next node
     public StudentNode(int rollNumber) {
@@ -14,7 +14,7 @@ public class StudentNode {
 
 public class Solution {
 
-    // Method to perform roll call operations and return the head of the linked list
+    // Public method to perform roll call operations and return the head of the linked list
     public static StudentNode runRollCallOperations(int[] rollNumbers) {
         StudentNode head = null;
 
@@ -35,7 +35,7 @@ public class Solution {
         return head;
     }
 
-    // Method to print the entire linked list
+    // Public method to print the entire linked list
     public static void printList(StudentNode head) {
         StudentNode current = head;
         while (current != null) {
