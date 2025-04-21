@@ -1,6 +1,6 @@
 package solutions;
 
-class StudentNode {
+public class StudentNode {
     int rollNumber;
     StudentNode next;
 
@@ -38,4 +38,3 @@ public class Solution {
         System.out.println();
     }
 }
-//
