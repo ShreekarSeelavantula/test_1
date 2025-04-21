@@ -1,7 +1,6 @@
 package tests;
 
 import solutions.Solution;
-import solutions.StudentNode;
 
 public class Test {
     public static void main(String[] args) {
@@ -16,9 +15,9 @@ public class Test {
     }
 
     private static void runTest(int[] rollNumbers, String label) {
-        StudentNode head = Solution.runRollCallOperations(rollNumbers);
+        Object head = Solution.runRollCallOperations(rollNumbers);
         System.out.print(label + ": ");
-        Solution.printList(head);
+        Solution.printList((solutions.StudentNode) head);
         System.out.println(label + ": ✅ Passed");
     }
 }

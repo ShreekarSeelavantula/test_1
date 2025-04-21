@@ -1,11 +1,10 @@
 package solutions;
 
-// Define the class for the Node in the linked list
-public class StudentNode {
-    public int rollNumber;
-    public StudentNode next;
+class StudentNode {
+    int rollNumber;
+    StudentNode next;
 
-    public StudentNode(int rollNumber) {
+    StudentNode(int rollNumber) {
         this.rollNumber = rollNumber;
         this.next = null;
     }
@@ -39,3 +38,4 @@ public class Solution {
         System.out.println();
     }
 }
+//
