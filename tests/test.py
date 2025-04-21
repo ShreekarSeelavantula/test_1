@@ -1,5 +1,5 @@
 import pytest
-from solution import run_roll_call_operations
+from solutions.solution import run_roll_call_operations
 
 # Function to convert the linked list to a list of roll numbers (for easier comparison)
 def linked_list_to_list(head):
