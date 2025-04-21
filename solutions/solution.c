@@ -15,13 +15,10 @@ struct StudentNode {
     struct StudentNode* runRollCallOperations(const int* rollNumbers, int count) {
 
 
-
-       
-    
-        return ;
+     return NULL;
 
 
-
+        
     }
 
 
