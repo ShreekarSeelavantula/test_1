@@ -1,28 +1,72 @@
 import pytest
-from solutions.solution import Solution  # Ensure correct import
+from solution import run_roll_call_operations
 
-# Function to test
-def test_sorted_squares():
-    test_cases = [
-        ([-10, -3, -2, 0, 1, 5, 7, 12], [0, 1, 4, 9, 25, 49, 100, 144]),
-        ([-10000, -500, -1, 0, 2, 3, 4000], [0, 1, 4, 9, 250000, 16000000, 100000000]),
-        ([-9, -8, -5, -3, -2, 0, 1, 4, 6, 10], [0, 1, 4, 9, 16, 25, 36, 64, 81, 100]),
-        ([-7, -3, 2, 3, 11], [4, 9, 9, 49, 121]),
-        ([-6, -5, -3, -1, 0, 2, 3, 4, 8], [0, 1, 4, 9, 9, 16, 25, 36, 64])
-    ]
+# Function to convert the linked list to a list of roll numbers (for easier comparison)
+def linked_list_to_list(head):
+    result = []
+    current = head
+    while current:
+        result.append(current.roll_number)
+        current = current.next
+    return result
 
-    solution = Solution()  # Initialize solution class
+# Test cases for the run_roll_call_operations function
+def test_case_1():
+    roll_numbers = [1, 2, 3, 4, 5]
+    head = run_roll_call_operations(roll_numbers)
+    assert linked_list_to_list(head) == [1, 2, 3, 4, 5]
+    print("Test Case 1: ✅ Passed")
 
-    for i, (input_data, expected_output) in enumerate(test_cases, 1):
-        output = solution.sortedSquares(input_data)  # Run the function
-        print("\n------------------------------")
-        print(f"Test Case {i}")
-        print(f"Given Input: {input_data}")
-        print(f"Expected Output: {expected_output}")
-        print(f"Your Output: {output}")
+def test_case_2():
+    roll_numbers = [10, 20, 30, 40]
+    head = run_roll_call_operations(roll_numbers)
+    assert linked_list_to_list(head) == [10, 20, 30, 40]
+    print("Test Case 2: ✅ Passed")
 
-        assert output == expected_output, f"Test Case {i} Failed ❌"
-        print(f"Test Case: ✅ Passed")
+def test_case_3():
+    roll_numbers = [100, 200, 300]
+    head = run_roll_call_operations(roll_numbers)
+    assert linked_list_to_list(head) == [100, 200, 300]
+    print("Test Case 3: ✅ Passed")
 
+def test_case_4():
+    roll_numbers = [5]
+    head = run_roll_call_operations(roll_numbers)
+    assert linked_list_to_list(head) == [5]
+    print("Test Case 4: ✅ Passed")
+
+def test_case_5():
+    roll_numbers = [500, 1000, 1500, 2000, 2500]
+    head = run_roll_call_operations(roll_numbers)
+    assert linked_list_to_list(head) == [500, 1000, 1500, 2000, 2500]
+    print("Test Case 5: ✅ Passed")
+
+def test_case_6():
+    roll_numbers = [100, 200]
+    head = run_roll_call_operations(roll_numbers)
+    assert linked_list_to_list(head) == [100, 200]
+    print("Test Case 6: ✅ Passed")
+
+# Additional test cases with variations in roll numbers
+def test_case_7():
+    roll_numbers = [15, 25, 35, 45, 55]
+    head = run_roll_call_operations(roll_numbers)
+    assert linked_list_to_list(head) == [15, 25, 35, 45, 55]
+    print("Test Case 7: ✅ Passed")
+
+def test_case_8():
+    roll_numbers = [2, 4, 6, 8, 10]
+    head = run_roll_call_operations(roll_numbers)
+    assert linked_list_to_list(head) == [2, 4, 6, 8, 10]
+    print("Test Case 8: ✅ Passed")
+
+# Running all the test cases
 if __name__ == "__main__":
-    test_sorted_squares()
+    test_case_1()
+    test_case_2()
+    test_case_3()
+    test_case_4()
+    test_case_5()
+    test_case_6()
+    test_case_7()
+    test_case_8()

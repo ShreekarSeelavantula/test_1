@@ -1,22 +1,13 @@
-#include <vector>
-#include <cmath>
+// Define the structure for the Node in the linked list
+struct StudentNode {
+    int rollNumber;
+    StudentNode* next;
 
-using namespace std;//dssdf
+    // Constructor for the node
+    StudentNode(int rollNumber) : rollNumber(rollNumber), next(nullptr) {}
+};
 
-vector<int> sortedSquares(vector<int>& nums) {
-    int left = 0, right = nums.size() - 1, pos = nums.size() - 1;
-    vector<int> result(nums.size());
-//sdfsdfssdfsd
-    while (left <= right) {
-        if (abs(nums[left]) > abs(nums[right])) {
-            result[pos] = nums[left] * nums[left];
-            left++;//ss
-        } else {
-            result[pos] = nums[right] * nums[right];
-            right--;
-        }
-        pos--;//2dsfsdss
-    }
-
-    return result;//vdsvd
+// Function to add students to the linked list and return the head of the list
+StudentNode* runRollCallOperations(int rollNumbers[], int count) {
+   
 }

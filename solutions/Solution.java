@@ -1,27 +1,43 @@
-package solutions; // Added package declaration to avoid import issu
+// Define the class for the Node in the linked list
+class StudentNode {
+    int rollNumber;
+    StudentNode next;
 
-import java.util.Arrays;
+    // Constructor for the node
+    public StudentNode(int rollNumber) {
+        this.rollNumber = rollNumber;
+        this.next = null;
+    }
+}
 
+// Function to add students to the linked list and return the head of the list
 public class Solution {
-    public int[] sortedSquares(int[] nums) {
-        int n = nums.length;
-        int[] result = new int[n];
-        int left = 0, right = n - 1;
-        int index = n - 1; //svdfgd //sdfsdfs
+    public static StudentNode runRollCallOperations(int[] rollNumbers) {
+        StudentNode head = null;
 
-        while (left <= right) {
-            int leftSquare = nums[left] * nums[left];
-            int rightSquare = nums[right] * nums[right];
-
-            if (leftSquare > rightSquare) {
-                result[index--] = leftSquare;
-                left++;
+        // Loop through the roll numbers and add them to the linked list
+        for (int rollNumber : rollNumbers) {
+            StudentNode newNode = new StudentNode(rollNumber);
+            if (head == null) {
+                head = newNode;
             } else {
-                result[index--] = rightSquare;//dfsdf
-                right--;
+                StudentNode current = head;
+                while (current.next != null) {
+                    current = current.next;
+                }
+                current.next = newNode;
             }
-        }//sfs
+        }
+        return head;
+    }
 
-        return result;
-    }//3sds
+    // Helper function to print the linked list (for test case validation)
+    public static void printList(StudentNode head) {
+        StudentNode current = head;
+        while (current != null) {
+            System.out.print(current.rollNumber + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
 }
