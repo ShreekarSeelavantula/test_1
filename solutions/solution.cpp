@@ -9,5 +9,7 @@ struct StudentNode {
 
 // Function to add students to the linked list and return the head of the list
 StudentNode* runRollCallOperations(int rollNumbers[], int count) {//
+
+    return nullptr;
    
 }
