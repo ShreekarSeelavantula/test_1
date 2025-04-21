@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 // Define the structure for the node
 struct StudentNode {
@@ -7,7 +8,7 @@ struct StudentNode {
     struct StudentNode* next;
 };
 
-// Function to print the linked list
+// Function to print the linked list (for debugging purposes)
 void printList(struct StudentNode* head) {
     struct StudentNode* current = head;
     while (current != NULL) {
@@ -30,12 +31,16 @@ int compareLists(struct StudentNode* list1, struct StudentNode* list2) {
         list2 = list2->next;
     }
 
+    // If one list is longer than the other
     if (list1 != NULL || list2 != NULL) {
-        return 0; // One list is longer than the other
+        return 0;
     }
 
     return 1; // Lists are equal
 }
+
+// Forward declaration of the function to be tested
+struct StudentNode* runRollCallOperations(const int* rollNumbers, int count);
 
 // Function to test the solution with various cases
 void runTestCases() {
