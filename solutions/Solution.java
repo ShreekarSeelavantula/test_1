@@ -1,12 +1,12 @@
 package solutions;
 
-// Define the class for the Node in the linked list (without 'public' access modifier)
-class StudentNode {
+// Define the class for the Node in the linked list (now public)
+public class StudentNode {
     int rollNumber;
     StudentNode next;
 
     // Constructor to initialize the roll number and next node
-    StudentNode(int rollNumber) {
+    public StudentNode(int rollNumber) {
         this.rollNumber = rollNumber;
         this.next = null;
     }
