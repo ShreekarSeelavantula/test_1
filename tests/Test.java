@@ -42,7 +42,7 @@ public class Test {
         Solution.printList(head6);
         System.out.println("Test Case 6: ✅ Passed");
 
-        // Additional test cases with variations in roll numbers
+        // Additional test cases
         int[] rollNumbers7 = {15, 25, 35, 45, 55};
         Solution.StudentNode head7 = Solution.runRollCallOperations(rollNumbers7);
         System.out.print("Test Case 7: ");

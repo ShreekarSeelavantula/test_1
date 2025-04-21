@@ -1,21 +1,20 @@
-// Define the class for the Node in the linked list
-class StudentNode {
-    int rollNumber;
-    StudentNode next;
-
-    // Constructor for the node
-    public StudentNode(int rollNumber) {
-        this.rollNumber = rollNumber;
-        this.next = null;
-    }
-}///
-
-// Function to add students to the linked list and return the head of the list
 public class Solution {
+    // Define the class for the Node in the linked list
+    public static class StudentNode {
+        int rollNumber;
+        StudentNode next;
+
+        // Constructor for the node
+        public StudentNode(int rollNumber) {
+            this.rollNumber = rollNumber;
+            this.next = null;
+        }
+    }
+
+    // Function to add students to the linked list and return the head of the list
     public static StudentNode runRollCallOperations(int[] rollNumbers) {
         StudentNode head = null;
 
-        // Loop through the roll numbers and add them to the linked list
         for (int rollNumber : rollNumbers) {
             StudentNode newNode = new StudentNode(rollNumber);
             if (head == null) {
@@ -28,6 +27,7 @@ public class Solution {
                 current.next = newNode;
             }
         }
+
         return head;
     }
 
