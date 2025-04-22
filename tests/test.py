@@ -1,6 +1,6 @@
 from solutions.solution import run_roll_call_operations
 
-# Function to convert the linked list to a list of roll numbers
+# Function to convert the linked list to a list of roll numbers (for easier comparison)
 def linked_list_to_list(head):
     result = []
     current = head
@@ -9,36 +9,37 @@ def linked_list_to_list(head):
         current = current.next
     return result
 
-# Test runner function
+# List of test cases with expected output
+test_cases = [
+    ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]),
+    ([10, 20, 30, 40], [10, 20, 30, 40]),
+    ([100, 200, 300], [100, 200, 300]),
+    ([5], [5]),
+    ([500, 1000, 1500, 2000, 2500], [500, 1000, 1500, 2000, 2500]),
+    ([100, 200], [100, 200]),
+    ([15, 25, 35, 45, 55], [15, 25, 35, 45, 55]),
+    ([2, 4, 6, 8, 10], [2, 4, 6, 8, 10]),
+]
+
+# Function to run and print the results of the test cases
 def run_tests():
-    test_cases = [
-        ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]),
-        ([10, 20, 30, 40], [10, 20, 30, 40]),
-        ([100, 200, 300], [100, 200, 300]),
-        ([5], [5]),
-        ([500, 1000, 1500, 2000, 2500], [500, 1000, 1500, 2000, 2500]),
-        ([100, 200], [100, 200]),
-        ([15, 25, 35, 45, 55], [15, 25, 35, 45, 55]),
-        ([2, 4, 6, 8, 10], [2, 4, 6, 8, 10])
-    ]
-
     all_passed = True
-    for i, (input_data, expected_output) in enumerate(test_cases, 1):
-        head = run_roll_call_operations(input_data)
-        actual_output = linked_list_to_list(head)
-        if actual_output == expected_output:
-            print(f"✅ Test case {i} passed.")
+    for i, (roll_numbers, expected) in enumerate(test_cases, 1):
+        head = run_roll_call_operations(roll_numbers)
+        result = linked_list_to_list(head)
+        if result == expected:
+            print(f"Test case {i} passed.")
         else:
+            print(f"Test case {i} failed: Expected {expected}, but got {result}.")
             all_passed = False
-            print(f"❌ Test case {i} failed.")
-            print(f"   Input: {input_data}")
-            print(f"   Expected: {expected_output}")
-            print(f"   Got: {actual_output}")
+    return all_passed
 
-    if all_passed:
-        print("\n🎉 All test cases passed!")
-    else:
-        print("\n🚨 Some test cases failed.")
-
+# Run all tests and exit with status code
 if __name__ == "__main__":
-    run_tests()
+    success = run_tests()
+    if success:
+        print("All test cases passed!")
+        exit(0)  # Success
+    else:
+        print("Some test cases failed.")
+        exit(1)  # Failure
