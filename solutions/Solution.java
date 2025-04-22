@@ -18,9 +18,5 @@ public class Solution {
         // Placeholder return for now, logic needs to be added by the coder
         return null;
     }//
-
-    // Function to print the list
-    public static void printList(StudentNode head) {
-        // Placeholder logic for printing the list, coder can add the correct logic here
-    }
+//
 }
