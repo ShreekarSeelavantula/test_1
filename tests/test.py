@@ -28,9 +28,9 @@ def run_tests():
         head = run_roll_call_operations(roll_numbers)
         result = linked_list_to_list(head)
         if result == expected:
-            print(f"Test case {i} passed.")
+            print(f"Test case {i}: ✅ Passed")
         else:
-            print(f"Test case {i} failed: Expected {expected}, but got {result}.")
+            print(f"Test case {i}: ❌ Failed: Expected {expected}, but got {result}.")
             all_passed = False
     return all_passed
 
@@ -38,8 +38,8 @@ def run_tests():
 if __name__ == "__main__":
     success = run_tests()
     if success:
-        print("All test cases passed!")
+        print("✅ All test cases passed!")
         exit(0)  # Success
     else:
-        print("Some test cases failed.")
+        print("❌ Some test cases failed.")
         exit(1)  # Failure
