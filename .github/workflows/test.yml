@@ -77,8 +77,7 @@ jobs:
       - name: Install Python Dependencies
         if: env.RUN_PYTHON == '1' && env.SOLUTION_COUNT == '1'
         run: |
-          echo "🔧 Installing Python dependencies..."
-          python3 -m pip install --upgrade pip pytest
+          echo "🔧 No external Python dependencies to install."
 
       - name: Compile and Run C Tests
         if: env.RUN_C == '1' && env.SOLUTION_COUNT == '1'

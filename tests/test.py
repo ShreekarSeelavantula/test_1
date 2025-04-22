@@ -1,7 +1,6 @@
-import pytest
 from solutions.solution import run_roll_call_operations
 
-# Function to convert the linked list to a list of roll numbers (for easier comparison)
+# Function to convert the linked list to a list of roll numbers
 def linked_list_to_list(head):
     result = []
     current = head
@@ -10,48 +9,36 @@ def linked_list_to_list(head):
         current = current.next
     return result
 
-# Test cases for the run_roll_call_operations function
-def test_case_1():
-    roll_numbers = [1, 2, 3, 4, 5]
-    head = run_roll_call_operations(roll_numbers)
-    assert linked_list_to_list(head) == [1, 2, 3, 4, 5]
+# Test runner function
+def run_tests():
+    test_cases = [
+        ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]),
+        ([10, 20, 30, 40], [10, 20, 30, 40]),
+        ([100, 200, 300], [100, 200, 300]),
+        ([5], [5]),
+        ([500, 1000, 1500, 2000, 2500], [500, 1000, 1500, 2000, 2500]),
+        ([100, 200], [100, 200]),
+        ([15, 25, 35, 45, 55], [15, 25, 35, 45, 55]),
+        ([2, 4, 6, 8, 10], [2, 4, 6, 8, 10])
+    ]
 
-def test_case_2():
-    roll_numbers = [10, 20, 30, 40]
-    head = run_roll_call_operations(roll_numbers)
-    assert linked_list_to_list(head) == [10, 20, 30, 40]
+    all_passed = True
+    for i, (input_data, expected_output) in enumerate(test_cases, 1):
+        head = run_roll_call_operations(input_data)
+        actual_output = linked_list_to_list(head)
+        if actual_output == expected_output:
+            print(f"✅ Test case {i} passed.")
+        else:
+            all_passed = False
+            print(f"❌ Test case {i} failed.")
+            print(f"   Input: {input_data}")
+            print(f"   Expected: {expected_output}")
+            print(f"   Got: {actual_output}")
 
-def test_case_3():
-    roll_numbers = [100, 200, 300]
-    head = run_roll_call_operations(roll_numbers)
-    assert linked_list_to_list(head) == [100, 200, 300]
+    if all_passed:
+        print("\n🎉 All test cases passed!")
+    else:
+        print("\n🚨 Some test cases failed.")
 
-def test_case_4():
-    roll_numbers = [5]
-    head = run_roll_call_operations(roll_numbers)
-    assert linked_list_to_list(head) == [5]
-
-def test_case_5():
-    roll_numbers = [500, 1000, 1500, 2000, 2500]
-    head = run_roll_call_operations(roll_numbers)
-    assert linked_list_to_list(head) == [500, 1000, 1500, 2000, 2500]
-
-def test_case_6():
-    roll_numbers = [100, 200]
-    head = run_roll_call_operations(roll_numbers)
-    assert linked_list_to_list(head) == [100, 200]
-
-# Additional test cases with variations in roll numbers
-def test_case_7():
-    roll_numbers = [15, 25, 35, 45, 55]
-    head = run_roll_call_operations(roll_numbers)
-    assert linked_list_to_list(head) == [15, 25, 35, 45, 55]
-
-def test_case_8():
-    roll_numbers = [2, 4, 6, 8, 10]
-    head = run_roll_call_operations(roll_numbers)
-    assert linked_list_to_list(head) == [2, 4, 6, 8, 10]
-
-# Running all the test cases automatically with pytest
 if __name__ == "__main__":
-    pytest.main()
+    run_tests()
