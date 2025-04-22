@@ -1,26 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure for the node return
+// Define the structure for the node
 struct StudentNode {
     int rollNumber;
     struct StudentNode* next;
 };
 
-
-
-//return return return 1
-
-    struct StudentNode* runRollCallOperations(const int* rollNumbers, int count) {
-
-
-   
-
-
-        
-    }
-
-
-
-
-    
+// Coder needs to implement this function
+struct StudentNode* runRollCallOperations(const int* rollNumbers, int count) {
+    // Your code here
+    return NULL;
+}

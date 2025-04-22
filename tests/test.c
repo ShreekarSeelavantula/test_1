@@ -8,149 +8,82 @@ struct StudentNode {
     struct StudentNode* next;
 };
 
-// Function to print the linked list (for debugging purposes)
-void printList(struct StudentNode* head) {
-    struct StudentNode* current = head;
-    while (current != NULL) {
-        printf("%d", current->rollNumber);
-        if (current->next != NULL) {
-            printf(" -> ");
-        }
-        current = current->next;
-    }
-    printf(" -> NULL\n");
-}
-
-// Function to compare two linked lists
-int compareLists(struct StudentNode* list1, struct StudentNode* list2) {
-    while (list1 != NULL && list2 != NULL) {
-        if (list1->rollNumber != list2->rollNumber) {
-            return 0; // Lists are not equal
-        }
-        list1 = list1->next;
-        list2 = list2->next;
-    }
-
-    // If one list is longer than the other
-    if (list1 != NULL || list2 != NULL) {
-        return 0;
-    }
-
-    return 1; // Lists are equal
-}
-
-// Forward declaration of the function to be tested
+// Function to be implemented by the user
 struct StudentNode* runRollCallOperations(const int* rollNumbers, int count);
 
-// Function to test the solution with various cases
-void runTestCases() {
-    int passedTests = 0;
-    int totalTests = 0;
+// Helper: Create linked list from array
+struct StudentNode* createList(const int* arr, int n) {
+    if (n == 0) return NULL;
 
-    // Test Case 1
-    int rollNumbers1[] = {101, 105, 110};
-    struct StudentNode* result1 = runRollCallOperations(rollNumbers1, 3);
-    struct StudentNode* expected1 = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected1->rollNumber = 101;
-    expected1->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected1->next->rollNumber = 105;
-    expected1->next->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected1->next->next->rollNumber = 110;
-    expected1->next->next->next = NULL;
+    struct StudentNode* head = (struct StudentNode*) malloc(sizeof(struct StudentNode));
+    head->rollNumber = arr[0];
+    head->next = NULL;
 
-    totalTests++;
-    printf("Test Case 1: ");
-    if (compareLists(result1, expected1)) {
+    struct StudentNode* current = head;
+    for (int i = 1; i < n; ++i) {
+        current->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
+        current = current->next;
+        current->rollNumber = arr[i];
+        current->next = NULL;
+    }
+    return head;
+}
+
+// Helper: Compare two linked lists
+int compareLists(struct StudentNode* l1, struct StudentNode* l2) {
+    while (l1 && l2) {
+        if (l1->rollNumber != l2->rollNumber) return 0;
+        l1 = l1->next;
+        l2 = l2->next;
+    }
+    return (l1 == NULL && l2 == NULL);
+}
+
+// Helper: Free memory
+void freeList(struct StudentNode* head) {
+    while (head) {
+        struct StudentNode* temp = head;
+        head = head->next;
+        free(temp);
+    }
+}
+
+// Function to run test cases
+void runTest(const int* input, int inputSize, const int* expectedOutput, int outputSize, int testNumber) {
+    printf("Test Case %d: ", testNumber);
+
+    struct StudentNode* result = runRollCallOperations(input, inputSize);
+    struct StudentNode* expected = createList(expectedOutput, outputSize);
+
+    if (compareLists(result, expected)) {
         printf("✅ Passed\n");
-        passedTests++;
     } else {
         printf("❌ Failed\n");
+        printf("   Input: [");
+        for (int i = 0; i < inputSize; ++i)
+            printf("%d%s", input[i], i == inputSize - 1 ? "" : ", ");
+        printf("]\n");
     }
 
-    // Test Case 2
-    int rollNumbers2[] = {100, 200, 300, 400};
-    struct StudentNode* result2 = runRollCallOperations(rollNumbers2, 4);
-    struct StudentNode* expected2 = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected2->rollNumber = 100;
-    expected2->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected2->next->rollNumber = 200;
-    expected2->next->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected2->next->next->rollNumber = 300;
-    expected2->next->next->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected2->next->next->next->rollNumber = 400;
-    expected2->next->next->next->next = NULL;
-
-    totalTests++;
-    printf("Test Case 2: ");
-    if (compareLists(result2, expected2)) {
-        printf("✅ Passed\n");
-        passedTests++;
-    } else {
-        printf("❌ Failed\n");
-    }
-
-    // Test Case 3
-    int rollNumbers3[] = {5, 10, 15, 20, 25};
-    struct StudentNode* result3 = runRollCallOperations(rollNumbers3, 5);
-    struct StudentNode* expected3 = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected3->rollNumber = 5;
-    expected3->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected3->next->rollNumber = 10;
-    expected3->next->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected3->next->next->rollNumber = 15;
-    expected3->next->next->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected3->next->next->next->rollNumber = 20;
-    expected3->next->next->next->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected3->next->next->next->next->rollNumber = 25;
-    expected3->next->next->next->next->next = NULL;
-
-    totalTests++;
-    printf("Test Case 3: ");
-    if (compareLists(result3, expected3)) {
-        printf("✅ Passed\n");
-        passedTests++;
-    } else {
-        printf("❌ Failed\n");
-    }
-
-    // Test Case 4 (edge case: only 1 student)
-    int rollNumbers4[] = {500};
-    struct StudentNode* result4 = runRollCallOperations(rollNumbers4, 1);
-    struct StudentNode* expected4 = (struct StudentNode*) malloc(sizeof(struct StudentNode));
-    expected4->rollNumber = 500;
-    expected4->next = NULL;
-
-    totalTests++;
-    printf("Test Case 4: ");
-    if (compareLists(result4, expected4)) {
-        printf("✅ Passed\n");
-        passedTests++;
-    } else {
-        printf("❌ Failed\n");
-    }
-
-    // Test Case 5 (edge case: empty list)
-    int rollNumbers5[] = {};
-    struct StudentNode* result5 = runRollCallOperations(rollNumbers5, 0);
-    struct StudentNode* expected5 = NULL;
-
-    totalTests++;
-    printf("Test Case 5: ");
-    if (compareLists(result5, expected5)) {
-        printf("✅ Passed\n");
-        passedTests++;
-    } else {
-        printf("❌ Failed\n");
-    }
-
-    // Summary
-    printf("\nSummary:\n");
-    printf("Total Tests: %d\n", totalTests);
-    printf("Passed Tests: %d\n", passedTests);
-    printf("Failed Tests: %d\n", totalTests - passedTests);
+    freeList(result);
+    freeList(expected);
 }
 
 int main() {
-    runTestCases();
+    int test1[] = {10, 20, 30};
+    runTest(test1, 3, test1, 3, 1);
+
+    int test2[] = {100};
+    runTest(test2, 1, test2, 1, 2);
+
+    int test3[] = {};
+    runTest(test3, 0, test3, 0, 3);
+
+    int test4[] = {1, 2, 3, 4, 5, 6};
+    runTest(test4, 6, test4, 6, 4);
+
+    int test5[] = {42};
+    runTest(test5, 1, test5, 1, 5);
+
     return 0;
 }
