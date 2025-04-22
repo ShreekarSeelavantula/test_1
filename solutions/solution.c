@@ -7,7 +7,6 @@ struct StudentNode {
     struct StudentNode* next;
 };
 
-// Function to add students to the list and return the head of the list
 
 
 ///
