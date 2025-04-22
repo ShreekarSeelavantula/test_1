@@ -43,7 +43,7 @@ jobs:
           # If no 'return' keyword found, stop the workflow
           if [[ $SOLUTION_WITHOUT_RETURN -eq 1 ]]; then
             echo "❌ Skipping further steps as no 'return' statement was found in the solution code."
-            exit 0
+            exit 1  # Fail the job if 'return' is missing
           fi
 
       - name: Determine Changed Solution File
