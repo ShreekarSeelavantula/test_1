@@ -27,23 +27,31 @@ jobs:
           CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}"
           SOLUTION_WITHOUT_RETURN=0
 
-          # Iterate through changed files and check for 'return' keyword
           for FILE in $CHANGED_FILES; do
             if [[ "$FILE" =~ ^solutions/.*\.(c|cpp|py|java)$ ]]; then
               echo "Checking file: $FILE"
-              if ! grep -q "return" "$FILE"; then
-                echo "❌ The file $FILE does not contain a 'return' statement."
+
+              if [[ "$FILE" == *.py ]]; then
+                # Remove Python comment lines
+                CODE_LINES=$(grep -vE '^\s*#' "$FILE")
+              else
+                # Remove C/C++/Java comment lines
+                CODE_LINES=$(grep -vE '^\s*//' "$FILE")
+              fi
+
+              # Check if 'return' exists in uncommented lines
+              if ! echo "$CODE_LINES" | grep -q "\breturn\b"; then
+                echo "❌ The file $FILE does not contain a non-commented 'return' statement."
                 SOLUTION_WITHOUT_RETURN=1
               else
-                echo "✅ The file $FILE contains a 'return' statement."
+                echo "✅ The file $FILE contains a non-commented 'return' statement."
               fi
             fi
           done
 
-          # If no 'return' keyword found, stop the workflow
           if [[ $SOLUTION_WITHOUT_RETURN -eq 1 ]]; then
-            echo "❌ Skipping further steps as no 'return' statement was found in the solution code."
-            exit 1  # Fail the job if 'return' is missing
+            echo "❌ Skipping further steps as no non-commented 'return' statement was found in the solution code."
+            exit 1
           fi
 
       - name: Determine Changed Solution File
