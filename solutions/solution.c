@@ -9,6 +9,19 @@ struct StudentNode {
 
 // Coder needs to implement this function
 struct StudentNode* runRollCallOperations(const int* rollNumbers, int count) {
-    // Your code here
-    return NULL;
+    if (count == 0) return NULL;
+
+    struct StudentNode* head = (struct StudentNode*) malloc(sizeof(struct StudentNode));
+    head->rollNumber = rollNumbers[0];
+    head->next = NULL;
+
+    struct StudentNode* current = head;
+    for (int i = 1; i < count; ++i) {
+        current->next = (struct StudentNode*) malloc(sizeof(struct StudentNode));
+        current = current->next;
+        current->rollNumber = rollNumbers[i];
+        current->next = NULL;
+    }
+
+    return head;
 }
