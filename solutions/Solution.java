@@ -13,10 +13,8 @@ public class Solution {
         }
     }
 
-    // Function to add students to the list and return the head of the list
     public static StudentNode runRollCallOperations(int[] rollNumbers) {
-        // Placeholder return for now, logic needs to be added by the coder
-        return null;
+        
     }//
 
     // Function to print the list
