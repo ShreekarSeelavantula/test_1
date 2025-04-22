@@ -20,15 +20,15 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v44
 
-      - name: Check for 'return' keyword in changed solution files
+      - name: Check for 'return' keyword in solution files
         id: check-return
         run: |
           echo "Checking for 'return' keyword in solution files..."
           CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}"
           SOLUTION_WITHOUT_RETURN=0
 
+          # Iterate through changed files and check for 'return' keyword
           for FILE in $CHANGED_FILES; do
-            # Skip non-solution files
             if [[ "$FILE" =~ ^solutions/.*\.(c|cpp|py|java)$ ]]; then
               if ! grep -q "return" "$FILE"; then
                 echo "❌ The file $FILE does not contain a 'return' statement."
@@ -37,6 +37,7 @@ jobs:
             fi
           done
 
+          # If no 'return' keyword found, stop the workflow
           if [[ $SOLUTION_WITHOUT_RETURN -eq 1 ]]; then
             echo "❌ Skipping further steps as no 'return' statement was found in the solution code."
             exit 0
