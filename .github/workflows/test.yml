@@ -30,9 +30,12 @@ jobs:
           # Iterate through changed files and check for 'return' keyword
           for FILE in $CHANGED_FILES; do
             if [[ "$FILE" =~ ^solutions/.*\.(c|cpp|py|java)$ ]]; then
+              echo "Checking file: $FILE"
               if ! grep -q "return" "$FILE"; then
                 echo "❌ The file $FILE does not contain a 'return' statement."
                 SOLUTION_WITHOUT_RETURN=1
+              else
+                echo "✅ The file $FILE contains a 'return' statement."
               fi
             fi
           done
