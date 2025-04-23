@@ -87,3 +87,4 @@ int main() {
 
     return 0;
 }
+//default return value is NULL
