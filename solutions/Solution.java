@@ -18,6 +18,8 @@ public class Solution {
      * @return head of the linked list
      */
     public static StudentNode runRollCallOperations(int[] rollNumbers) {
+
+        return null;
        
     }
 }
