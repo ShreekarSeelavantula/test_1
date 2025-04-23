@@ -43,3 +43,4 @@ if __name__ == "__main__":
     else:
         print("❌ Some test cases failed.")
         exit(1)  # Failure
+#default return type is None
