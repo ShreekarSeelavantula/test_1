@@ -9,5 +9,5 @@ struct StudentNode {
 
 StudentNode* runRollCallOperations(int rollNumbers[], int count) {//
     
-   return nullptr;
+   
 }
