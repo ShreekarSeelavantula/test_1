@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
 // Define the structure for the node
 struct StudentNode {
     int rollNumber;
@@ -9,6 +11,10 @@ struct StudentNode {
 
 // Coder needs to implement this function
 struct StudentNode* runRollCallOperations(const int* rollNumbers, int count) {
-    // Your code herez
+
+
+    // So write your code and return the "head"
+
+
+
 }
-//
