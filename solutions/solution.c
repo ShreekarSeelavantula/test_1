@@ -1,21 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 // Defined the structure for the node
 struct StudentNode {
     int rollNumber;
     struct StudentNode* next;
 };
 
-// Coder needs to implement this function
-struct StudentNode* runRollCallOperations(const int* rollNumbers, int count) {
+// Updated function using array-style parameter
+struct StudentNode* runRollCallOperations(const int rollNumbers[], int count) {
+    if (count == 0) return NULL;
 
+    struct StudentNode* head = (struct StudentNode*) malloc(sizeof(struct StudentNode));
+    head->rollNumber = rollNumbers[0];
+    head->next = NULL;
 
-    // So write your code and return the "head"
-    
+    struct StudentNode* current = head;
+    for (int i = 1; i < count; ++i) {
+        struct StudentNode* newNode = (struct StudentNode*) malloc(sizeof(struct StudentNode));
+        newNode->rollNumber = rollNumbers[i];
+        newNode->next = NULL;
+        current->next = newNode;
+        current = newNode;
+    }
 
-
-
+    return head;
 }

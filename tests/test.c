@@ -9,10 +9,10 @@ struct StudentNode {
 };
 
 // Function to be implemented by the user
-struct StudentNode* runRollCallOperations(const int* rollNumbers, int count);
+struct StudentNode* runRollCallOperations(const int rollNumbers[], int count);
 
 // Helper: Create linked list from array
-struct StudentNode* createList(const int* arr, int n) {
+struct StudentNode* createList(const int arr[], int n) {
     if (n == 0) return NULL;
 
     struct StudentNode* head = (struct StudentNode*) malloc(sizeof(struct StudentNode));
@@ -49,7 +49,7 @@ void freeList(struct StudentNode* head) {
 }
 
 // Function to run test cases
-void runTest(const int* input, int inputSize, const int* expectedOutput, int outputSize, int testNumber) {
+void runTest(const int input[], int inputSize, const int expectedOutput[], int outputSize, int testNumber) {
     printf("Test Case %d: ", testNumber);
 
     struct StudentNode* result = runRollCallOperations(input, inputSize);
@@ -87,4 +87,3 @@ int main() {
 
     return 0;
 }
-//default return value is NULL
