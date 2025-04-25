@@ -76,7 +76,7 @@ int main() {
     int test2[] = {100};
     runTest(test2, 1, test2, 1, 2);
 
-    int test3[] = {};
+    int* test3 = NULL; // Fix for empty input
     runTest(test3, 0, test3, 0, 3);
 
     int test4[] = {1, 2, 3, 4, 5, 6};

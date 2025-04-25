@@ -7,7 +7,7 @@ struct StudentNode {
     struct StudentNode* next;
 };
 
-// Updated function using array-style parameter
+// Function to create a linked list from an array of roll numbers
 struct StudentNode* runRollCallOperations(const int rollNumbers[], int count) {
     if (count == 0) return NULL;
 
