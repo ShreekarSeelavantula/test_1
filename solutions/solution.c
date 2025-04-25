@@ -3,7 +3,7 @@
 
 
 
-// Define the structure for the node
+// Defined the structure for the node
 struct StudentNode {
     int rollNumber;
     struct StudentNode* next;
