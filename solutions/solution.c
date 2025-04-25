@@ -14,7 +14,7 @@ struct StudentNode* runRollCallOperations(const int* rollNumbers, int count) {
 
 
     // So write your code and return the "head"
-    return NULL;
+    
 
 
 
