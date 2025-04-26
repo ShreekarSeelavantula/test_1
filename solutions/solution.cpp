@@ -1,4 +1,3 @@
-// solutions/solution.cpp
 #include <iostream>
 #include <cstdlib>
 
@@ -25,5 +24,5 @@ StudentNode* runRollCallOperations(const int rollNumbers[], int count) {
         current = current->next;
     }
 
-    return head;  // Return the head of the listh
+    return head;  // Return the head of the list
 }
