@@ -23,6 +23,8 @@ test_cases = [
 
 def run_tests():
     all_passed = True
+    total_tests = len(test_cases)
+    failed_tests = 0
     for i, (roll_numbers, expected) in enumerate(test_cases, 1):
         print(f"Running Test Case {i}...")
         head = run_roll_call_operations(roll_numbers)
@@ -32,15 +34,21 @@ def run_tests():
             print(f"Test case {i}: ✅ Passed")
         else:
             print(f"Test case {i}: ❌ Failed: Expected {expected}, but got {result}.")
+            failed_tests += 1
             all_passed = False
+    
+    # Print summary of results
+    if all_passed:
+        print(f"✅ All {total_tests} test cases passed!")
+    else:
+        print(f"❌ {failed_tests} out of {total_tests} test cases failed.")
+    
     return all_passed
 
 if __name__ == "__main__":
     print("🚀 Running Python Test Cases...")
     success = run_tests()
     if success:
-        print("✅ All test cases passed!")
         sys.exit(0)
     else:
-        print("❌ Some test cases failed.")
         sys.exit(1)
