@@ -91,3 +91,4 @@ int main() {
 
     return failed;  // 0 if all passed, 1 if any failed
 }
+// default return value is NULL
