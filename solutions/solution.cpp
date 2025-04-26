@@ -12,17 +12,5 @@ struct StudentNode {
 
 // Function to run roll call operations
 StudentNode* runRollCallOperations(const int rollNumbers[], int count) {
-    if (count == 0) return nullptr;  // Return null for empty input
-
-    // Create the head of the list
-    StudentNode* head = new StudentNode(rollNumbers[0]);
-    StudentNode* current = head;
-
-    // Create the rest of the list
-    for (int i = 1; i < count; ++i) {
-        current->next = new StudentNode(rollNumbers[i]);
-        current = current->next;
-    }
-
-    return head;  // Return the head of the list
+   return nullptr;
 }
