@@ -27,6 +27,7 @@ def run_tests():
         print(f"Running Test Case {i}...")
         head = run_roll_call_operations(roll_numbers)
         result = linked_list_to_list(head)
+        
         if result == expected:
             print(f"Test case {i}: ✅ Passed")
         else:
@@ -43,4 +44,3 @@ if __name__ == "__main__":
     else:
         print("❌ Some test cases failed.")
         sys.exit(1)
-#the default return value is None
