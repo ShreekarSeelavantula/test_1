@@ -4,7 +4,7 @@ class StudentNode:
         self.next = None
 
 def run_roll_call_operations(roll_numbers):
-    # Manually create a linked list for [1, 2, 3, 4, 5]Yag
+    # Manually create a linked list for [1, 2, 3, 4, 5]Yagq
 
     head = StudentNode(1)
     head.next = StudentNode(2)
