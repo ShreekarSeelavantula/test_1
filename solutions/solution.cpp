@@ -10,5 +10,5 @@ struct StudentNode {
 StudentNode* runRollCallOperations(int rollNumbers[], int count) {
     // write the code here  using StudentNode structure and return the head
     
-   
+   return nullptr;
 }
