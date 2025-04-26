@@ -26,6 +26,7 @@ test_cases = [
 def run_tests():
     all_passed = True
     for i, (roll_numbers, expected) in enumerate(test_cases, 1):
+        print(f"Running Test Case {i}...")  # Debugging print to check test case execution
         head = run_roll_call_operations(roll_numbers)
         result = linked_list_to_list(head)
         if result == expected:
@@ -37,7 +38,7 @@ def run_tests():
 
 # Main function
 if __name__ == "__main__":
-    print("🚀 Running Python Test Cases...")
+    print("🚀 Running Python Test Cases...")  # Starting message
     success = run_tests()
     if success:
         print("✅ All test cases passed!")
@@ -45,4 +46,4 @@ if __name__ == "__main__":
     else:
         print("❌ Some test cases failed.")
         sys.exit(1)  # failure exit
-#default return value is None
+#the default return value is None
