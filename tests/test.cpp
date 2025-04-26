@@ -1,23 +1,6 @@
 #include <iostream>
 #include <cassert>
-#include "../solutions/solution.cpp"  // Include the solution file correctly
-
-// Helper: Create a linked list from an array
-StudentNode* createList(const int arr[], int n) {
-    if (n == 0) return nullptr;
-
-    // Create the head of the list
-    StudentNode* head = new StudentNode(arr[0]);
-    StudentNode* current = head;
-
-    // Create the rest of the list
-    for (int i = 1; i < n; ++i) {
-        current->next = new StudentNode(arr[i]);
-        current = current->next;
-    }
-
-    return head;
-}
+#include "../solutions/solution.cpp"  // Only include the solution file, don't define functions again
 
 // Helper: Compare two linked lists
 bool compareLists(StudentNode* l1, StudentNode* l2) {
@@ -38,11 +21,28 @@ void freeList(StudentNode* head) {
     }
 }
 
+// Helper: Create a linked list from an array
+StudentNode* createList(const int arr[], int n) {
+    if (n == 0) return nullptr;
+
+    // Create the head of the list
+    StudentNode* head = new StudentNode(arr[0]);
+    StudentNode* current = head;
+
+    // Create the rest of the list
+    for (int i = 1; i < n; ++i) {
+        current->next = new StudentNode(arr[i]);
+        current = current->next;
+    }
+
+    return head;
+}
+
 // Function to run test cases
 int runTest(const int input[], int inputSize, const int expectedOutput[], int outputSize, int testNumber) {
     std::cout << "Test Case " << testNumber << ": ";
 
-    StudentNode* result = runRollCallOperations(input, inputSize);
+    StudentNode* result = runRollCallOperations(input, inputSize);  // Function is now correctly used from solution.cpp
     StudentNode* expected = createList(expectedOutput, outputSize);
 
     bool passed = compareLists(result, expected);
