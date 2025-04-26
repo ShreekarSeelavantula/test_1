@@ -1,6 +1,14 @@
+// tests/test.cpp
 #include <iostream>
 #include <cassert>
-#include "../solutions/solution.cpp"  // Only include the solution file, don't define functions again
+
+// Declare the StudentNode structure and runRollCallOperations function
+struct StudentNode {
+    int rollNumber;
+    StudentNode* next;
+};
+
+StudentNode* runRollCallOperations(const int rollNumbers[], int count);
 
 // Helper: Compare two linked lists
 bool compareLists(StudentNode* l1, StudentNode* l2) {
@@ -25,13 +33,11 @@ void freeList(StudentNode* head) {
 StudentNode* createList(const int arr[], int n) {
     if (n == 0) return nullptr;
 
-    // Create the head of the list
-    StudentNode* head = new StudentNode(arr[0]);
+    StudentNode* head = new StudentNode{arr[0], nullptr};
     StudentNode* current = head;
 
-    // Create the rest of the list
     for (int i = 1; i < n; ++i) {
-        current->next = new StudentNode(arr[i]);
+        current->next = new StudentNode{arr[i], nullptr};
         current = current->next;
     }
 
@@ -42,7 +48,7 @@ StudentNode* createList(const int arr[], int n) {
 int runTest(const int input[], int inputSize, const int expectedOutput[], int outputSize, int testNumber) {
     std::cout << "Test Case " << testNumber << ": ";
 
-    StudentNode* result = runRollCallOperations(input, inputSize);  // Function is now correctly used from solution.cpp
+    StudentNode* result = runRollCallOperations(input, inputSize);
     StudentNode* expected = createList(expectedOutput, outputSize);
 
     bool passed = compareLists(result, expected);
@@ -58,11 +64,11 @@ int runTest(const int input[], int inputSize, const int expectedOutput[], int ou
 
     freeList(result);
     freeList(expected);
-    return !passed;  // Return 0 if passed, 1 if failed
+    return !passed;  // 0 if passed, 1 if failed
 }
 
 int main() {
-    int failed = 0;  // Track failures
+    int failed = 0;
 
     // Test case 1
     int test1[] = {10, 20, 30};
@@ -84,6 +90,5 @@ int main() {
     int test5[] = {42};
     failed |= runTest(test5, 1, test5, 1, 5);
 
-    // If any test fails, return non-zero value
-    return failed;  // 0 if all passed, 1 if any failed
+    return failed;
 }

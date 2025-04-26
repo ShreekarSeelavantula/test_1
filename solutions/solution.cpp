@@ -1,5 +1,5 @@
+// solutions/solution.cpp
 #include <iostream>
-#include <cstdlib>
 
 // Define the structure for the Node in the linked list
 struct StudentNode {
@@ -10,7 +10,7 @@ struct StudentNode {
     StudentNode(int rollNumber) : rollNumber(rollNumber), next(nullptr) {}
 };
 
-// Function to run roll call operations (implementation by the coder)
+// Function to run roll call operations
 StudentNode* runRollCallOperations(const int rollNumbers[], int count) {
     if (count == 0) return nullptr;  // Return null for empty input
 
@@ -24,5 +24,5 @@ StudentNode* runRollCallOperations(const int rollNumbers[], int count) {
         current = current->next;
     }
 
-    return head;  // Return the head of the listkw
+    return head;  // Return the head of the list
 }
