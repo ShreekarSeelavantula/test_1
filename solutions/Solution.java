@@ -13,6 +13,6 @@ public class Solution {
     }
 
     public static StudentNode runRollCallOperations(int[] rollNumbers) {
-       
+       return null;
     }
 }
