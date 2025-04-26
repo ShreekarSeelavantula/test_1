@@ -1,3 +1,5 @@
+// solution.cpp
+
 // Define the structure for the Node in the linked list
 struct StudentNode {
     int rollNumber;
@@ -7,6 +9,7 @@ struct StudentNode {
     StudentNode(int rollNumber) : rollNumber(rollNumber), next(nullptr) {}
 };
 
+// Function to create a linked list from an array of roll numbers
 StudentNode* runRollCallOperations(int rollNumbers[], int count) {
     if (count == 0) return nullptr; // if no students
 

@@ -1,7 +1,9 @@
 // test.cpp
+
 #include <iostream>
 using namespace std;
 
+// StudentNode structure (matches solution.cpp)
 struct StudentNode {
     int rollNumber;
     StudentNode* next;
@@ -9,7 +11,7 @@ struct StudentNode {
     StudentNode(int rollNumber) : rollNumber(rollNumber), next(nullptr) {}
 };
 
-// ONLY declaration, not definition!
+// Declaration (don't define again here!)
 StudentNode* runRollCallOperations(int rollNumbers[], int count);
 
 // Helper: Check if list matches expected
