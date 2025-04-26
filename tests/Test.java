@@ -7,34 +7,19 @@ public class Test {
     public static void main(String[] args) {
         int failed = 0; // Track failures
 
-        // Test case 1
+        // Test cases
         failed |= runTest(new int[]{101, 105, 110}, "Test Case 1", "101 -> 105 -> 110 -> NULL");
-
-        // Test case 2
         failed |= runTest(new int[]{10, 20, 30, 40}, "Test Case 2", "10 -> 20 -> 30 -> 40 -> NULL");
-
-        // Test case 3
         failed |= runTest(new int[]{100, 200, 300}, "Test Case 3", "100 -> 200 -> 300 -> NULL");
-
-        // Test case 4
         failed |= runTest(new int[]{5}, "Test Case 4", "5 -> NULL");
-
-        // Test case 5
         failed |= runTest(new int[]{}, "Test Case 5", "NULL");
-
-        // Test case 6
         failed |= runTest(new int[]{500, 1000, 1500, 2000, 2500}, "Test Case 6", "500 -> 1000 -> 1500 -> 2000 -> 2500 -> NULL");
-
-        // Test case 7
         failed |= runTest(new int[]{5000, 10000, 15000}, "Test Case 7", "5000 -> 10000 -> 15000 -> NULL");
-
-        // Test case 8
         failed |= runTest(new int[]{1}, "Test Case 8", "1 -> NULL");
 
-        // Test case 9 (Intentional fail)
+        // Intentional fail case: should fail
         failed |= runTest(new int[]{101, 103, 105}, "Test Case 9", "101 -> 102 -> 103 -> NULL", false);
 
-        // Test case 10
         failed |= runTest(new int[]{200, 400, 600}, "Test Case 10", "200 -> 400 -> 600 -> NULL");
 
         // Exit based on pass/fail
@@ -51,14 +36,18 @@ public class Test {
 
         StringBuilder result = new StringBuilder();
         Solution.StudentNode current = head;
-        while (current != null) {
-            result.append(current.rollNumber);
-            if (current.next != null) {
-                result.append(" -> ");
+        if (current == null) {
+            result.append("NULL");
+        } else {
+            while (current != null) {
+                result.append(current.rollNumber);
+                if (current.next != null) {
+                    result.append(" -> ");
+                }
+                current = current.next;
             }
-            current = current.next;
+            result.append(" -> NULL");
         }
-        result.append(" -> NULL");
 
         System.out.print(label + ": ");
         boolean passed = result.toString().equals(expectedOutput);
