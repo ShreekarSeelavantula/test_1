@@ -1,31 +1,7 @@
+// tests/test.cpp
 #include <iostream>
 #include <cassert>
-
-// Define the structure for the Node in the linked list
-struct StudentNode {
-    int rollNumber;
-    StudentNode* next;
-
-    // Constructor for the node
-    StudentNode(int rollNumber) : rollNumber(rollNumber), next(nullptr) {}
-};
-
-// Function to be implemented by the user
-StudentNode* runRollCallOperations(const int rollNumbers[], int count);
-
-// Helper: Create linked list from array
-StudentNode* createList(const int arr[], int n) {
-    if (n == 0) return nullptr;
-
-    StudentNode* head = new StudentNode(arr[0]);
-    StudentNode* current = head;
-
-    for (int i = 1; i < n; ++i) {
-        current->next = new StudentNode(arr[i]);
-        current = current->next;
-    }
-    return head;
-}
+#include "solutions/solution.cpp"  // Include the solution file
 
 // Helper: Compare two linked lists
 bool compareLists(StudentNode* l1, StudentNode* l2) {
