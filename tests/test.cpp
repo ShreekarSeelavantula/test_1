@@ -1,3 +1,4 @@
+// test.cpp
 #include <iostream>
 using namespace std;
 
@@ -8,20 +9,8 @@ struct StudentNode {
     StudentNode(int rollNumber) : rollNumber(rollNumber), next(nullptr) {}
 };
 
-// Function to create a linked list from an array of roll numbers
-StudentNode* runRollCallOperations(int rollNumbers[], int count) {
-    if (count == 0) return nullptr;
-
-    StudentNode* head = new StudentNode(rollNumbers[0]);
-    StudentNode* current = head;
-
-    for (int i = 1; i < count; i++) {
-        current->next = new StudentNode(rollNumbers[i]);
-        current = current->next;
-    }
-
-    return head;
-}
+// ONLY declaration, not definition!
+StudentNode* runRollCallOperations(int rollNumbers[], int count);
 
 // Helper: Check if list matches expected
 bool checkList(StudentNode* head, int expected[], int count) {
@@ -59,6 +48,8 @@ int main() {
     int totalTests = 5;
     int passedTests = 0;
 
+    cout << "🚀 Running C++ Test Cases...\n" << endl;
+
     // Test cases
     int rollNumbers1[] = {1, 2, 3, 4, 5};
     int expected1[] = {1, 2, 3, 4, 5};
@@ -80,7 +71,13 @@ int main() {
     int expected5[] = {500, 1000, 1500, 2000, 2500};
     if (runTest(rollNumbers5, 5, expected5, 5, 5)) passedTests++;
 
-    cout << "\nSummary: " << passedTests << "/" << totalTests << " tests passed." << endl;
+    cout << "\n📝 Summary: " << passedTests << "/" << totalTests << " tests passed." << endl;
+
+    if (passedTests == totalTests) {
+        cout << "🎉 All test cases passed successfully!" << endl;
+    } else {
+        cout << "❗ Some test cases failed. Please review your code!" << endl;
+    }
 
     return 0;
 }
