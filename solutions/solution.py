@@ -4,7 +4,14 @@ class StudentNode:
         self.next = None
 
 def run_roll_call_operations(roll_numbers):
-        # write the code here by using the StudentNode structure and return the head
+    if not roll_numbers:
+        return None  # Empty list, so return None
 
-    return
-   
+    head = StudentNode(roll_numbers[0])  # Create the first node
+    current = head
+
+    for number in roll_numbers[1:]:
+        current.next = StudentNode(number)
+        current = current.next
+
+    return head

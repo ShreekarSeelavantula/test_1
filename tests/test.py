@@ -1,4 +1,5 @@
 from solutions.solution import run_roll_call_operations
+import sys
 
 # Function to convert the linked list to a list of roll numbers (for easier comparison)
 def linked_list_to_list(head):
@@ -34,13 +35,12 @@ def run_tests():
             all_passed = False
     return all_passed
 
-# Run all tests and exit with status code
+# Main function
 if __name__ == "__main__":
     success = run_tests()
     if success:
         print("✅ All test cases passed!")
-        exit(0)  # Success
+        sys.exit(0)  # 0 if all passed
     else:
         print("❌ Some test cases failed.")
-        exit(1)  # Failure
-#default return type is None
+        sys.exit(1)  # 1 if any failed
