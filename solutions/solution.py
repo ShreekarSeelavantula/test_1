@@ -16,4 +16,4 @@ def run_roll_call_operations(roll_numbers):
         current.next = StudentNode(roll_number)
         current = current.next
 
-    return None
+    return head
