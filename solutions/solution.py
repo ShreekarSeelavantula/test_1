@@ -4,7 +4,7 @@ class StudentNode:
         self.next = None
 
 def run_roll_call_operations(roll_numbers):
-    if not roll_numbers:  # if the input list is empty, return None
+    if not roll_numbers:  # If the input list is empty, return None
         return None
 
     # Create the head of the list
@@ -15,10 +15,5 @@ def run_roll_call_operations(roll_numbers):
     for roll_number in roll_numbers[1:]:
         current.next = StudentNode(roll_number)
         current = current.next
-
-    # Intentionally modify the list to make some tests fail:
-    # For example, we modify the list by skipping "20" for test case 2
-    if roll_numbers == [10, 20, 30, 40]:
-        current.next = None  # Skipping 20
 
     return head
