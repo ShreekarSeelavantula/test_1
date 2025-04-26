@@ -113,7 +113,7 @@ jobs:
         if: env.RUN_CPP == '1' && env.SOLUTION_COUNT == '1'
         run: |
           echo "🚀 Running C++ Test Cases..."
-          g++ -o tests/test tests/test.cpp solutions/solution.cpp
+          g++ -std=c++11 -o tests/test tests/test.cpp solutions/solution.cpp
           ./tests/test
 
       - name: Run Python Tests

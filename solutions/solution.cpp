@@ -24,5 +24,5 @@ StudentNode* runRollCallOperations(const int rollNumbers[], int count) {
         current = current->next;
     }
 
-    return head;  // Return the head of the listk
+    return head;  // Return the head of the listkw
 }
