@@ -37,11 +37,12 @@ def run_tests():
 
 # Main function
 if __name__ == "__main__":
+    print("🚀 Running Python Test Cases...")
     success = run_tests()
     if success:
         print("✅ All test cases passed!")
-        sys.exit(0)  # 0 if all passed
+        sys.exit(0)  # success exit
     else:
         print("❌ Some test cases failed.")
-        sys.exit(1)  # 1 if any failed
-#default is None
+        sys.exit(1)  # failure exit
+#default return value is None
