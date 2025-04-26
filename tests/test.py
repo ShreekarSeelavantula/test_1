@@ -26,6 +26,7 @@ test_cases = [
     ([100, 200], [100, 200]),
     ([15, 25, 35, 45, 55], [15, 25, 35, 45, 55]),
     ([2, 4, 6, 8, 10], [2, 4, 6, 8, 10]),
+    ([], None),  # Test case for empty input (None expected)
 ]
 
 def run_tests():
