@@ -1,6 +1,13 @@
 from solutions.solution import run_roll_call_operations
 import sys
 
+# Disable output buffering for immediate log printing
+import os
+import io
+
+# Force output to be unbuffered
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', line_buffering=True)
+
 def linked_list_to_list(head):
     result = []
     current = head
