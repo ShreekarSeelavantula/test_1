@@ -34,8 +34,14 @@ def run_tests():
     failed_tests = 0
     for i, (roll_numbers, expected) in enumerate(test_cases, 1):
         print(f"Running Test Case {i}...")
+        
+        # Run the roll call operations function and convert the result to a list
         head = run_roll_call_operations(roll_numbers)
         result = linked_list_to_list(head)
+
+        # Debug: print actual result and expected values for clarity
+        print(f"Expected: {expected}")
+        print(f"Result: {result}")
         
         if result == expected:
             print(f"Test case {i}: ✅ Passed")
@@ -50,6 +56,9 @@ def run_tests():
     else:
         print(f"❌ {failed_tests} out of {total_tests} test cases failed.")
     
+    # Ensure output is flushed before exit
+    sys.stdout.flush()
+
     return all_passed
 
 if __name__ == "__main__":
@@ -58,4 +67,4 @@ if __name__ == "__main__":
     if success:
         sys.exit(0)
     else:
-        sys.exit()
+        sys.exit(1)
