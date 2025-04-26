@@ -1,7 +1,6 @@
 from solutions.solution import run_roll_call_operations
 import sys
 
-# Function to convert the linked list to a list of roll numbers (for easier comparison)
 def linked_list_to_list(head):
     result = []
     current = head
@@ -22,11 +21,10 @@ test_cases = [
     ([2, 4, 6, 8, 10], [2, 4, 6, 8, 10]),
 ]
 
-# Function to run and print the results of the test cases
 def run_tests():
     all_passed = True
     for i, (roll_numbers, expected) in enumerate(test_cases, 1):
-        print(f"Running Test Case {i}...")  # Debugging print to check test case execution
+        print(f"Running Test Case {i}...")
         head = run_roll_call_operations(roll_numbers)
         result = linked_list_to_list(head)
         if result == expected:
@@ -36,14 +34,13 @@ def run_tests():
             all_passed = False
     return all_passed
 
-# Main function
 if __name__ == "__main__":
-    print("🚀 Running Python Test Cases...")  # Starting message
+    print("🚀 Running Python Test Cases...")
     success = run_tests()
     if success:
         print("✅ All test cases passed!")
-        sys.exit(0)  # success exit
+        sys.exit(0)
     else:
         print("❌ Some test cases failed.")
-        sys.exit(1)  # failure exit
+        sys.exit(1)
 #the default return value is None
