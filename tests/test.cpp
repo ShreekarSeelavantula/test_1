@@ -1,7 +1,7 @@
 // tests/test.cpp
 #include <iostream>
 #include <cassert>
-#include "solutions/solution.cpp"  // Include the solution file
+#include "../solutions/solution.cpp"  // Include the solution file correctly
 
 // Helper: Compare two linked lists
 bool compareLists(StudentNode* l1, StudentNode* l2) {
