@@ -44,3 +44,4 @@ if __name__ == "__main__":
     else:
         print("❌ Some test cases failed.")
         sys.exit(1)  # 1 if any failed
+#default is None
