@@ -13,7 +13,7 @@ def run_roll_call_operations(roll_numbers):
     current = head
 
     for num in roll_numbers[1:]:
-        if num == 20:  # Let's intentionally skip the number 20
+        if num == 20:  # Let's intentionally skip the number 20p
             continue
         current.next = StudentNode(num)
         current = current.next
