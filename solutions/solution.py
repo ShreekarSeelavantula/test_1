@@ -4,12 +4,14 @@ class StudentNode:
         self.next = None
 
 def run_roll_call_operations(roll_numbers):
-    # Manually create a linked list for [1, 2, 3, 4, 5]Yagq
+    # Create the linked list based on the given roll_numbers
+    if not roll_numbers:
+        return None
 
-    head = StudentNode(1)
-    head.next = StudentNode(2)
-    head.next.next = StudentNode(3)
-    head.next.next.next = StudentNode(4)
-    head.next.next.next.next = StudentNode(5)
-
+    head = StudentNode(roll_numbers[0])
+    current = head
+    for num in roll_numbers[1:]:
+        current.next = StudentNode(num)
+        current = current.next
+    
     return head
