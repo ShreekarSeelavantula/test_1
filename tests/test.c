@@ -49,13 +49,14 @@ void freeList(struct StudentNode* head) {
 }
 
 // Function to run test cases
-void runTest(const int input[], int inputSize, const int expectedOutput[], int outputSize, int testNumber) {
+int runTest(const int input[], int inputSize, const int expectedOutput[], int outputSize, int testNumber) {
     printf("Test Case %d: ", testNumber);
 
     struct StudentNode* result = runRollCallOperations(input, inputSize);
     struct StudentNode* expected = createList(expectedOutput, outputSize);
 
-    if (compareLists(result, expected)) {
+    int passed = compareLists(result, expected);
+    if (passed) {
         printf("✅ Passed\n");
     } else {
         printf("❌ Failed\n");
@@ -67,23 +68,26 @@ void runTest(const int input[], int inputSize, const int expectedOutput[], int o
 
     freeList(result);
     freeList(expected);
+    return !passed; // Return 0 if passed, 1 if failed
 }
 
 int main() {
+    int failed = 0;  // Track failures
+
     int test1[] = {10, 20, 30};
-    runTest(test1, 3, test1, 3, 1);
+    failed |= runTest(test1, 3, test1, 3, 1);
 
     int test2[] = {100};
-    runTest(test2, 1, test2, 1, 2);
+    failed |= runTest(test2, 1, test2, 1, 2);
 
     int* test3 = NULL; // Fix for empty input
-    runTest(test3, 0, test3, 0, 3);
+    failed |= runTest(test3, 0, test3, 0, 3);
 
     int test4[] = {1, 2, 3, 4, 5, 6};
-    runTest(test4, 6, test4, 6, 4);
+    failed |= runTest(test4, 6, test4, 6, 4);
 
     int test5[] = {42};
-    runTest(test5, 1, test5, 1, 5);
+    failed |= runTest(test5, 1, test5, 1, 5);
 
-    return 0;
+    return failed;  // 0 if all passed, 1 if any failed
 }
