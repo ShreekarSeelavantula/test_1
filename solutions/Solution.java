@@ -12,10 +12,19 @@ public class Solution {
         }
     }
 
-   
     public static StudentNode runRollCallOperations(int[] rollNumbers) {
-    // write the code here by using the Student Node Structure and return the headw
+        if (rollNumbers == null || rollNumbers.length == 0) {
+            return null;
+        }
 
-       
+        StudentNode head = new StudentNode(rollNumbers[0]);
+        StudentNode current = head;
+
+        for (int i = 1; i < rollNumbers.length; i++) {
+            current.next = new StudentNode(rollNumbers[i]);
+            current = current.next;
+        }
+
+        return head;
     }
 }
