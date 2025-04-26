@@ -8,57 +8,79 @@ struct StudentNode {
     StudentNode(int rollNumber) : rollNumber(rollNumber), next(nullptr) {}
 };
 
-StudentNode* runRollCallOperations(int rollNumbers[], int count);
+// Function to create a linked list from an array of roll numbers
+StudentNode* runRollCallOperations(int rollNumbers[], int count) {
+    if (count == 0) return nullptr;
 
+    StudentNode* head = new StudentNode(rollNumbers[0]);
+    StudentNode* current = head;
+
+    for (int i = 1; i < count; i++) {
+        current->next = new StudentNode(rollNumbers[i]);
+        current = current->next;
+    }
+
+    return head;
+}
+
+// Helper: Check if list matches expected
 bool checkList(StudentNode* head, int expected[], int count) {
     StudentNode* current = head;
     for (int i = 0; i < count; i++) {
         if (current == nullptr || current->rollNumber != expected[i]) {
-            return false;  // List does not match expected values
+            return false;
         }
         current = current->next;
     }
-    return current == nullptr;  // Ensure the list ends at the right point
+    return current == nullptr;
+}
+
+// Helper: Free memory
+void freeList(StudentNode* head) {
+    while (head != nullptr) {
+        StudentNode* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+// Run single test case
+bool runTest(int rollNumbers[], int inputSize, int expected[], int expectedSize, int testNumber) {
+    StudentNode* result = runRollCallOperations(rollNumbers, inputSize);
+    bool passed = checkList(result, expected, expectedSize);
+
+    cout << "Test Case " << testNumber << ": " << (passed ? "✅ Passed" : "❌ Failed") << endl;
+
+    freeList(result);
+    return passed;
 }
 
 int main() {
-    bool passed;
+    int totalTests = 5;
+    int passedTests = 0;
 
-    // Test case 1
+    // Test cases
     int rollNumbers1[] = {1, 2, 3, 4, 5};
     int expected1[] = {1, 2, 3, 4, 5};
-    StudentNode* head1 = runRollCallOperations(rollNumbers1, 5);
-    passed = checkList(head1, expected1, 5);
-    cout << "Test Case 1: " << (passed ? "✅ Passed" : "❌ Failed") << endl;
+    if (runTest(rollNumbers1, 5, expected1, 5, 1)) passedTests++;
 
-    // Test case 2
     int rollNumbers2[] = {10, 20, 30, 40};
     int expected2[] = {10, 20, 30, 40};
-    StudentNode* head2 = runRollCallOperations(rollNumbers2, 4);
-    passed = checkList(head2, expected2, 4);
-    cout << "Test Case 2: " << (passed ? "✅ Passed" : "❌ Failed") << endl;
+    if (runTest(rollNumbers2, 4, expected2, 4, 2)) passedTests++;
 
-    // Test case 3
     int rollNumbers3[] = {100, 200, 300};
     int expected3[] = {100, 200, 300};
-    StudentNode* head3 = runRollCallOperations(rollNumbers3, 3);
-    passed = checkList(head3, expected3, 3);
-    cout << "Test Case 3: " << (passed ? "✅ Passed" : "❌ Failed") << endl;
+    if (runTest(rollNumbers3, 3, expected3, 3, 3)) passedTests++;
 
-    // Test case 4
     int rollNumbers4[] = {5};
     int expected4[] = {5};
-    StudentNode* head4 = runRollCallOperations(rollNumbers4, 1);
-    passed = checkList(head4, expected4, 1);
-    cout << "Test Case 4: " << (passed ? "✅ Passed" : "❌ Failed") << endl;
+    if (runTest(rollNumbers4, 1, expected4, 1, 4)) passedTests++;
 
-    // Test case 5
     int rollNumbers5[] = {500, 1000, 1500, 2000, 2500};
     int expected5[] = {500, 1000, 1500, 2000, 2500};
-    StudentNode* head5 = runRollCallOperations(rollNumbers5, 5);
-    passed = checkList(head5, expected5, 5);
-    cout << "Test Case 5: " << (passed ? "✅ Passed" : "❌ Failed") << endl;
+    if (runTest(rollNumbers5, 5, expected5, 5, 5)) passedTests++;
+
+    cout << "\nSummary: " << passedTests << "/" << totalTests << " tests passed." << endl;
 
     return 0;
 }
-//default return value is nullptr
