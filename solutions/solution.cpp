@@ -12,5 +12,5 @@ struct StudentNode {
 // Function to create a linked list from an array of roll numbers
 StudentNode* runRollCallOperations(int rollNumbers[], int count) {
     
-    return nullptr; // return head of the linked list
+    return nullptr; // return head of the linked lista
 }
