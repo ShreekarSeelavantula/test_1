@@ -2,11 +2,9 @@ name: Run Code Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   run-tests:
@@ -32,14 +30,11 @@ jobs:
               echo "Checking file: $FILE"
 
               if [[ "$FILE" == *.py ]]; then
-                # Remove Python comment lines (full-line and inline)
-                CODE_LINES=$(grep -vE '^\s*#' "$FILE" | grep -vE '#.*')
+                CODE_LINES=$(sed 's/#.*//' "$FILE" | grep -v '^\s*$')
               else
-                # Remove C/C++/Java comment lines (full-line and inline)
-                CODE_LINES=$(grep -vE '^\s*//' "$FILE" | sed 's@//.*@@')
+                CODE_LINES=$(sed 's@//.*@@' "$FILE" | grep -v '^\s*$')
               fi
 
-              # Now check for 'return' in uncommented lines
               if ! echo "$CODE_LINES" | grep -q "\breturn\b"; then
                 echo "❌ The file $FILE does not contain a non-commented 'return' statement."
                 SOLUTION_WITHOUT_RETURN=1
@@ -90,21 +85,18 @@ jobs:
       - name: Install C Dependencies
         if: env.RUN_C == '1' && env.SOLUTION_COUNT == '1'
         run: |
-          echo "🔧 Installing C dependencies..."
           sudo apt-get update
           sudo apt-get install -y gcc
 
       - name: Install C++ Dependencies
         if: env.RUN_CPP == '1' && env.SOLUTION_COUNT == '1'
         run: |
-          echo "🔧 Installing C++ dependencies..."
           sudo apt-get update
           sudo apt-get install -y g++
 
       - name: Install Java Dependencies
         if: env.RUN_JAVA == '1' && env.SOLUTION_COUNT == '1'
         run: |
-          echo "🔧 Installing Java dependencies..."
           sudo apt-get update
           sudo apt-get install -y default-jdk
 
@@ -119,6 +111,13 @@ jobs:
           echo "🚀 Running C Test Cases..."
           gcc -o tests/test tests/test.c solutions/solution.c
           ./tests/test
+          STATUS=$?
+          if [ $STATUS -ne 0 ]; then
+            echo "❌ One or more test cases failed."
+            exit 1
+          else
+            echo "✅ All test cases passed."
+          fi
 
       - name: Compile and Run C++ Tests
         if: env.RUN_CPP == '1' && env.SOLUTION_COUNT == '1'
@@ -126,6 +125,13 @@ jobs:
           echo "🚀 Running C++ Test Cases..."
           g++ -o tests/test tests/test.cpp solutions/solution.cpp
           ./tests/test
+          STATUS=$?
+          if [ $STATUS -ne 0 ]; then
+            echo "❌ One or more test cases failed."
+            exit 1
+          else
+            echo "✅ All test cases passed."
+          fi
 
       - name: Run Python Tests
         if: env.RUN_PYTHON == '1' && env.SOLUTION_COUNT == '1'
@@ -134,6 +140,13 @@ jobs:
           export PYTHONUNBUFFERED=1
           export PYTHONPATH=$PWD
           python3 tests/test.py | tee test_results.log
+          STATUS=${PIPESTATUS[0]}
+          if [ $STATUS -ne 0 ]; then
+            echo "❌ One or more test cases failed."
+            exit 1
+          else
+            echo "✅ All test cases passed."
+          fi
 
       - name: Compile and Run Java Tests
         if: env.RUN_JAVA == '1' && env.SOLUTION_COUNT == '1'
@@ -141,6 +154,13 @@ jobs:
           echo "🚀 Running Java Test Cases..."
           javac -d . solutions/Solution.java tests/Test.java
           java tests.Test
+          STATUS=$?
+          if [ $STATUS -ne 0 ]; then
+            echo "❌ One or more test cases failed."
+            exit 1
+          else
+            echo "✅ All test cases passed."
+          fi
 
       - name: Upload Test Results (Python only)
         if: env.SOLUTION_COUNT == '1' && env.RUN_PYTHON == '1'
